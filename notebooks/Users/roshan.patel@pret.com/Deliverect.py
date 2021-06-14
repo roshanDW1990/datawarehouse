@@ -7,6 +7,11 @@ container = "deliverect"
 
 # COMMAND ----------
 
+import pandas as pd
+print("hello world")
+
+# COMMAND ----------
+
 spark.conf.set(f"fs.azure.account.key.{storage_account_name}.blob.core.windows.net", storage_account_key)
 
 # COMMAND ----------
