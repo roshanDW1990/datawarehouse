@@ -67,7 +67,7 @@ storepath = "/mnt/deliverect/baseball_final"
 
 #write to lake
 
-new_df.write.format('parquet').option("header", True).mode("overwrite"delta").save(storepath)
+new_df.write.format('parquet').option("header", True).mode("overwrite").save(storepath)
 
 #new_df.write.mode("overwrite").format("delta").save(storepath)
 
