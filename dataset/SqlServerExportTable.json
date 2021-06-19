@@ -1,0 +1,13 @@
+{
+	"name": "SqlServerExportTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerExportTable01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

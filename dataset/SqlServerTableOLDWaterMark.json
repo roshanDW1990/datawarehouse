@@ -1,0 +1,17 @@
+{
+	"name": "SqlServerTableOLDWaterMark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerOLDWaterMark",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "azure_watermarktable"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

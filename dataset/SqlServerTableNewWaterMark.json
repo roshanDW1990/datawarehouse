@@ -1,0 +1,13 @@
+{
+	"name": "SqlServerTableNewWaterMark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerNewWaterMark",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "weatherlaker01",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9b84fc3a-5fde-448d-8bb5-495040e55970",
+		"tenantId": "5e27b78a-8656-4fa6-8bec-b59d7b0e706c"
+	}
+}

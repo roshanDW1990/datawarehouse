@@ -1,0 +1,17 @@
+{
+	"name": "SqlServerTableDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerRoshan",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "availablity_product_details"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

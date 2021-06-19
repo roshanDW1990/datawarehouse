@@ -1,0 +1,17 @@
+{
+	"name": "SqlServerNewWaterMark",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=True;data source=warehouse;initial catalog=pret_dw_mart",
+			"userName": "pret\\sqlservice",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwOWU3NzQ2NC04MThiLTRmNmMtOWM0OC02NWY0OGM2MmVmZWYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeOnPrem",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

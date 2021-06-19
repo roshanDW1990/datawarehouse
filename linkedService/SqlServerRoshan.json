@@ -1,0 +1,17 @@
+{
+	"name": "SqlServerRoshan",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=True;data source=warehouse;initial catalog=Roshan",
+			"userName": "pret\\sqlservice",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkNDBjMDQ2Yi1mNmI4LTQ5NTEtOGFmMS00ZGVkYWE0NjgxMTciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeOnPrem",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

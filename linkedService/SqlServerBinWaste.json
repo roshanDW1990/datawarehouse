@@ -1,0 +1,17 @@
+{
+	"name": "SqlServerBinWaste",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=True;data source=warehouse;initial catalog=Pret_DW_MART",
+			"userName": "Pret\\admin-roshanp",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwNjdhZDNlNC1lYzg1LTQwMzctYThhZS1kYWE1YWRiODk2ZTkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeOnPrem",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
