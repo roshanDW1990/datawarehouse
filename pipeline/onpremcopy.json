@@ -66,7 +66,10 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"tableOption": "autoCreate",
+									"preCopyScript": {
+										"value": "CREATE TABLE @{item().Table_Schema.@item().Table_Name}",
+										"type": "Expression"
+									},
 									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
@@ -98,17 +101,7 @@
 							"outputs": [
 								{
 									"referenceName": "AzureSqldatabase",
-									"type": "DatasetReference",
-									"parameters": {
-										"SchemaName": {
-											"value": "@item().Schema_Name",
-											"type": "Expression"
-										},
-										"TableName": {
-											"value": "@item().Table_Name",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							]
 						}
