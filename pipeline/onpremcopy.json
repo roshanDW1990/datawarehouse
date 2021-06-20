@@ -98,7 +98,17 @@
 							"outputs": [
 								{
 									"referenceName": "AzureSqldatabase",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"SchemaName": {
+											"value": "@item().Schema_Name",
+											"type": "Expression"
+										},
+										"TableName": {
+											"value": "@item().Table_Name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
