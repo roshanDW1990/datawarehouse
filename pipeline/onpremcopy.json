@@ -65,15 +65,9 @@
 									"partitionOption": "None"
 								},
 								"sink": {
-									"type": "DelimitedTextSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "DelimitedTextWriteSettings",
-										"quoteAllText": true,
-										"fileExtension": ".txt"
-									}
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
 								"translator": {
@@ -103,14 +97,8 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "CSVTable",
-									"type": "DatasetReference",
-									"parameters": {
-										"FileName": {
-											"value": "@concat(item().Table_Schema,'_',item().Table_Name,'.csv')",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "AzureSqldatabase",
+									"type": "DatasetReference"
 								}
 							]
 						}
