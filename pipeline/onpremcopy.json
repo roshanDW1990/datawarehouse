@@ -66,6 +66,7 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
+									"tableOption": "autoCreate",
 									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
