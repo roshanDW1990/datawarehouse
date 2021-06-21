@@ -48,7 +48,7 @@
 					},
 					"activities": [
 						{
-							"name": "Export Table",
+							"name": "Copy-Table",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -106,6 +106,143 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "SP pipeline LOG",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy-Table",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[sp_UpdateLogTable]",
+									"storedProcedureParameters": {
+										"CopyActivity_End_Time": {
+											"type": "String",
+											"value": " @{utcnow()}  "
+										},
+										"CopyActivity_queuingDuration_in_secs": {
+											"type": "String",
+											"value": "@{activity('Copy-Table').output.executionDetails[0]. detailedDurations.queuingDuration} "
+										},
+										"CopyActivity_Start_Time": {
+											"type": "String",
+											"value": "@{activity('Copy-Table').output.executionDetails[0].start} "
+										},
+										"CopyActivity_transferDuration_in_secs": {
+											"type": "String",
+											"value": "@{activity('Copy-Table').output.executionDetails[0]. detailedDurations.transferDuration} "
+										},
+										"copyDuration_in_secs": {
+											"type": "String",
+											"value": "@{activity('Copy-Table').output.copyDuration} "
+										},
+										"DataFactory_Name": {
+											"type": "String",
+											"value": "@{pipeline().DataFactory} "
+										},
+										"DataRead": {
+											"type": "Int32",
+											"value": " @{activity('Copy-Table').output.rowsRead}  "
+										},
+										"Destination": {
+											"type": "String",
+											"value": " @{item().dst_name}  "
+										},
+										"effectiveIntegrationRuntime": {
+											"type": "String",
+											"value": " @{activity('Copy-Table').output.effectiveIntegrationRuntime}  "
+										},
+										"Execution_Status": {
+											"type": "String",
+											"value": "@{activity('Copy-Table').output.executionDetails[0].status} "
+										},
+										"No_ParallelCopies": {
+											"type": "Int32",
+											"value": "@{activity('Copy-Table').output.usedParallelCopies} "
+										},
+										"Pipeline_Name": {
+											"type": "String",
+											"value": " @{pipeline().Pipeline}  "
+										},
+										"rowsCopied": {
+											"type": "String",
+											"value": "@{activity('Copy-Table').output.rowsCopied} "
+										},
+										"RunID": {
+											"type": "String",
+											"value": " @{pipeline().RunId}  "
+										},
+										"Sink_Type": {
+											"type": "String",
+											"value": " @{activity('Copy-Table').output.executionDetails[0].sink.type}  "
+										},
+										"Source": {
+											"type": "String",
+											"value": "@{item().src_name} "
+										},
+										"Source_Type": {
+											"type": "String",
+											"value": "@{activity('Copy-Table').output.executionDetails[0].source.type} "
+										},
+										"TriggerId": {
+											"type": "String",
+											"value": "@{pipeline().TriggerId} "
+										},
+										"TriggerName": {
+											"type": "String",
+											"value": " @{pipeline().TriggerName}  "
+										},
+										"TriggerTime": {
+											"type": "String",
+											"value": "@{pipeline().TriggerTime} "
+										},
+										"TriggerType": {
+											"type": "String",
+											"value": " @{pipeline().TriggerType}  "
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "AzureSqlSPLOG",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Copy data2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"enableStaging": false
+							}
 						}
 					]
 				}
