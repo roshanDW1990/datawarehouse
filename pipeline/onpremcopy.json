@@ -101,7 +101,7 @@
 									"referenceName": "AzureSqldatabase",
 									"type": "DatasetReference",
 									"parameters": {
-										"SchemaName": "@item().Table_Name",
+										"SchemaName": "@item().Schema_Name",
 										"TableName": "@item().Table_Name"
 									}
 								}
