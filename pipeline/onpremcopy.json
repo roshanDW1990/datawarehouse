@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "ListTable",
+				"description": "gets a list of tables from the on prem DW",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
