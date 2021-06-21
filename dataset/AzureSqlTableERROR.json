@@ -1,0 +1,104 @@
+{
+	"name": "AzureSqlTableERROR",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "error_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "parameter_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DataFactory_Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pipeline_Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Source",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Destination",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TriggerType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TriggerId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TriggerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TriggerTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "No_ParallelCopies",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "copyDuration_in_secs",
+				"type": "nvarchar"
+			},
+			{
+				"name": "effectiveIntegrationRuntime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Source_Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sink_Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Execution_Status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ErrorDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ErrorCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ErrorLoggedTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FailureType",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "pipeline_errors"
+		}
+	}
+}
