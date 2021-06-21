@@ -99,7 +99,11 @@
 							"outputs": [
 								{
 									"referenceName": "AzureSqldatabase",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"SchemaName": "@item().Table_Name",
+										"TableName": "@item().Table_Name"
+									}
 								}
 							]
 						}
