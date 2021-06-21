@@ -133,7 +133,10 @@
 									"storedProcedureParameters": {
 										"DataFactory_Name": {
 											"type": "String",
-											"value": "@{pipeline().DataFactory} "
+											"value": {
+												"value": "@pipeline().DataFactory",
+												"type": "Expression"
+											}
 										}
 									},
 									"queryTimeout": "02:00:00",
