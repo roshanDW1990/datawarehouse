@@ -159,10 +159,6 @@
 											"type": "Int32",
 											"value": " @{activity('Copy-Table').output.rowsRead}  "
 										},
-										"Destination": {
-											"type": "String",
-											"value": " @{item().dst_name}  "
-										},
 										"effectiveIntegrationRuntime": {
 											"type": "String",
 											"value": " @{activity('Copy-Table').output.effectiveIntegrationRuntime}  "
