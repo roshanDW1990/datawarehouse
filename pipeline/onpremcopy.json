@@ -66,10 +66,7 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": {
-										"value": "CREATE TABLE @{item().Table_Schema}.@{item().Table_Name}\nAS SELECT TOP (0) * FROM etl.@{item().Table_name}",
-										"type": "Expression"
-									},
+									"tableOption": "autoCreate",
 									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
