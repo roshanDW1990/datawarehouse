@@ -187,10 +187,6 @@
 											"type": "String",
 											"value": " @{activity('Copy-Table').output.executionDetails[0].sink.type}  "
 										},
-										"Source": {
-											"type": "String",
-											"value": "@{item().src_name} "
-										},
 										"Source_Type": {
 											"type": "String",
 											"value": "@{activity('Copy-Table').output.executionDetails[0].source.type} "
@@ -273,10 +269,6 @@
 											"type": "String",
 											"value": "@{pipeline().DataFactory} "
 										},
-										"Destination": {
-											"type": "String",
-											"value": "@{item().dst_name} "
-										},
 										"effectiveIntegrationRuntime": {
 											"type": "String",
 											"value": "@{activity('Copy-Table').output.effectiveIntegrationRuntime} "
@@ -316,10 +308,6 @@
 										"Sink_Type": {
 											"type": "String",
 											"value": " @{activity('Copy-Table').output.executionDetails[0].sink.type}  "
-										},
-										"Source": {
-											"type": "String",
-											"value": " @{item().src_name}  "
 										},
 										"Source_Type": {
 											"type": "String",
