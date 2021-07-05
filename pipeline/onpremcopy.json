@@ -194,71 +194,122 @@
 									"storedProcedureParameters": {
 										"copyDuration_in_secs": {
 											"type": "String",
-											"value": "@{activity('Copy-Table').output.copyDuration} "
+											"value": {
+												"value": "@{activity('Copy-Table').output.copyDuration} ",
+												"type": "Expression"
+											}
 										},
 										"DataFactory_Name": {
 											"type": "String",
-											"value": "@{pipeline().DataFactory} "
+											"value": {
+												"value": "@{pipeline().DataFactory} ",
+												"type": "Expression"
+											}
 										},
 										"effectiveIntegrationRuntime": {
 											"type": "String",
-											"value": "@{activity('Copy-Table').output.effectiveIntegrationRuntime} "
+											"value": {
+												"value": "@{activity('Copy-Table').output.effectiveIntegrationRuntime} ",
+												"type": "Expression"
+											}
 										},
 										"ErrorCode": {
 											"type": "String",
-											"value": "@{activity('Copy-Table').error.errorCode} "
+											"value": {
+												"value": "@{activity('Copy-Table').error.errorCode} ",
+												"type": "Expression"
+											}
 										},
 										"ErrorDescription": {
 											"type": "String",
-											"value": "@{activity('Copy-Table').error.message} "
+											"value": {
+												"value": "@{activity('Copy-Table').error.message} ",
+												"type": "Expression"
+											}
 										},
 										"ErrorLoggedTime": {
 											"type": "String",
-											"value": "@utcnow()  "
+											"value": {
+												"value": "@utcnow()  ",
+												"type": "Expression"
+											}
 										},
 										"Execution_Status": {
 											"type": "String",
-											"value": "@{activity('Copy-Table').output.executionDetails[0].status} "
+											"value": {
+												"value": "@{activity('Copy-Table').output.executionDetails[0].status} ",
+												"type": "Expression"
+											}
 										},
 										"FailureType": {
 											"type": "String",
-											"value": "@concat(activity('Copy-Table').error.message,'failureType:',activity('Copy-Table').error.failureType) "
+											"value": {
+												"value": "@concat(activity('Copy-Table').error.message,'failureType:',activity('Copy-Table').error.failureType) ",
+												"type": "Expression"
+											}
 										},
 										"No_ParallelCopies": {
 											"type": "Int32",
-											"value": "@{activity('Copy-Table').output.usedParallelCopies} "
+											"value": {
+												"value": "@{activity('Copy-Table').output.usedParallelCopies} ",
+												"type": "Expression"
+											}
 										},
 										"Pipeline_Name": {
 											"type": "String",
-											"value": "@{pipeline().Pipeline} "
+											"value": {
+												"value": "@{pipeline().Pipeline} ",
+												"type": "Expression"
+											}
 										},
 										"RunId": {
 											"type": "String",
-											"value": "@{pipeline().RunId} "
+											"value": {
+												"value": "@{pipeline().RunId} ",
+												"type": "Expression"
+											}
 										},
 										"Sink_Type": {
 											"type": "String",
-											"value": " @{activity('Copy-Table').output.executionDetails[0].sink.type}  "
+											"value": {
+												"value": " @{activity('Copy-Table').output.executionDetails[0].sink.type}  ",
+												"type": "Expression"
+											}
 										},
 										"Source_Type": {
 											"type": "String",
-											"value": " @{activity('Copy-Table').output.executionDetails[0].source.type}  "
+											"value": {
+												"value": " @{activity('Copy-Table').output.executionDetails[0].source.type}  ",
+												"type": "Expression"
+											}
 										},
 										"TriggerId": {
 											"type": "String",
-											"value": "@{pipeline().TriggerId} "
+											"value": {
+												"value": "@{pipeline().TriggerId} ",
+												"type": "Expression"
+											}
 										},
 										"TriggerName": {
 											"type": "String",
-											"value": " @{pipeline().TriggerName}  "
+											"value": {
+												"value": " @{pipeline().TriggerName}  ",
+												"type": "Expression"
+											}
 										},
 										"TriggerTime": {
 											"type": "String",
-											"value": "@{pipeline().TriggerTime} "
+											"value": {
+												"value": "@{pipeline().TriggerTime} ",
+												"type": "Expression"
+											}
 										},
 										"TriggerType": {
 											"type": "String",
-											"value": "@{pipeline().TriggerType} "
+											"value": {
+												"value": "@{pipeline().TriggerType} ",
+												"type": "Expression"
+											}
 										}
 									},
 									"queryTimeout": "02:00:00",
