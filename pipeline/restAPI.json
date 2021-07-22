@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy data Rest API",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -29,7 +29,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false
