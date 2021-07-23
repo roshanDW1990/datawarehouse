@@ -22,12 +22,14 @@
 						"requestMethod": "GET"
 					},
 					"sink": {
-						"type": "JsonSink",
+						"type": "DelimitedTextSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings"
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false
@@ -40,7 +42,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "RestAPI",
+						"referenceName": "RestAPICSV",
 						"type": "DatasetReference"
 					}
 				]
