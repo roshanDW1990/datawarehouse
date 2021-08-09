@@ -1,0 +1,12 @@
+{
+	"name": "AzureSqlTableMLB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseMLB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

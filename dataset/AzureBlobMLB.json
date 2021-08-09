@@ -1,0 +1,22 @@
+{
+	"name": "AzureBlobMLB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageMLB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "mlb"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
