@@ -1,16 +1,23 @@
 {
-	"name": "AzureSqlTableMLB",
+	"name": "watermarkAzureSql",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabaseMLB",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"SinkTableName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "temp_mlbbatting"
+			"table": {
+				"value": "@dataset().SinkTableName",
+				"type": "Expression"
+			}
 		}
 	}
 }
