@@ -28,7 +28,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "select * from watermarktable where TableName  =  '@{item().TABLE_NAME}'",
+									"sqlReaderQuery": {
+										"value": "select * from watermarktable where TableName  =  '@{item().TABLE_NAME}'",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -53,7 +56,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "select MAX(@{item().WaterMark_Column}) as NewWatermarkvalue from @{item().TABLE_NAME}",
+									"sqlReaderQuery": {
+										"value": "select MAX(@{item().WaterMark_Column}) as NewWatermarkvalue from @{item().TABLE_NAME}",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -64,7 +70,7 @@
 							}
 						},
 						{
-							"name": "IncrementalCopyActivity",
+							"name": "Copy-Table",
 							"type": "Copy",
 							"dependsOn": [
 								{
@@ -91,15 +97,27 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "select * from @{item().TABLE_NAME} where @{item().WaterMark_Column} > '@{activity('LookupOldWaterMarkActivity').output.firstRow.WatermarkValue}' and @{item().WaterMark_Column} <= '@{activity('LookupNewWaterMarkActivity').output.firstRow.NewWatermarkvalue}'",
+									"sqlReaderQuery": {
+										"value": "select * from @{item().TABLE_NAME} where @{item().WaterMark_Column} > '@{activity('LookupOldWaterMarkActivity').output.firstRow.WatermarkValue}' and @{item().WaterMark_Column} <= '@{activity('LookupNewWaterMarkActivity').output.firstRow.NewWatermarkvalue}'",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"sqlWriterStoredProcedureName": "@{item().StoredProcedureNameForMergeOperation}",
-									"sqlWriterTableType": "@{item().TableType}",
-									"storedProcedureTableTypeParameterName": "@{item().TABLE_NAME}",
+									"sqlWriterStoredProcedureName": {
+										"value": "@{item().StoredProcedureNameForMergeOperation}",
+										"type": "Expression"
+									},
+									"sqlWriterTableType": {
+										"value": "@{item().TableType}",
+										"type": "Expression"
+									},
+									"storedProcedureTableTypeParameterName": {
+										"value": "@{item().TABLE_NAME}",
+										"type": "Expression"
+									},
 									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
@@ -136,7 +154,7 @@
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
 								{
-									"activity": "IncrementalCopyActivity",
+									"activity": "Copy-Table",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -154,11 +172,17 @@
 								"storedProcedureName": "[dbo].[usp_write_watermark]",
 								"storedProcedureParameters": {
 									"LastModifiedtime": {
-										"value": "@{activity('LookupNewWaterMarkActivity').output.firstRow.NewWatermarkvalue}",
+										"value": {
+											"value": "@{activity('LookupNewWaterMarkActivity').output.firstRow.NewWatermarkvalue}",
+											"type": "Expression"
+										},
 										"type": "DateTime"
 									},
 									"TableName": {
-										"value": "@{activity('LookupOldWaterMarkActivity').output.firstRow.TableName}",
+										"value": {
+											"value": "@{activity('LookupOldWaterMarkActivity').output.firstRow.TableName}",
+											"type": "Expression"
+										},
 										"type": "String"
 									}
 								}
@@ -167,6 +191,58 @@
 								"referenceName": "AzureSqlDatabaseMLB",
 								"type": "LinkedServiceReference"
 							}
+						},
+						{
+							"name": "Create_SQLDB_Log",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy-Table",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "SELECT '@{pipeline().DataFactory}' as DataFactory_Name,\n'@{pipeline().Pipeline}' as Pipeline_Name,\n'@{pipeline().RunId}' as RunId,\n'@{item().src_name}' as Source,\n'@{item().dst_name}' as Destination,\n'@{pipeline().TriggerType}' as TriggerType,\n'@{pipeline().TriggerId}' as TriggerId,\n'@{pipeline().TriggerName}' as TriggerName,\n'@{pipeline().TriggerTime}' as TriggerTime,\n'@{activity('Copy-Table').output.rowsCopied}' as rowsCopied,\n'@{activity('Copy-Table').output.rowsRead}' as RowsRead,\n'@{activity('Copy-Table').output.usedParallelCopies}' as No_ParallelCopies,\n'@{activity('Copy-Table').output.copyDuration}' as copyDuration_in_secs,\n'@{activity('Copy-Table').output.effectiveIntegrationRuntime}' as effectiveIntegrationRuntime,\n'@{activity('Copy-Table').output.executionDetails[0].source.type}' as Source_Type,\n'@{activity('Copy-Table').output.executionDetails[0].sink.type}' as Sink_Type,\n'@{activity('Copy-Table').output.executionDetails[0].status}' as Execution_Status,\n'@{activity('Copy-Table').output.executionDetails[0].start}' as CopyActivity_Start_Time,\n'@{utcnow()}' as CopyActivity_End_Time,\n'@{activity('Copy-Table').output.executionDetails[0].detailedDurations.queuingDuration}' as CopyActivity_queuingDuration_in_secs,\n'@{activity('Copy-Table').output.executionDetails[0].detailedDurations.timeToFirstByte}' as CopyActivity_timeToFirstByte_in_secs,\n'@{activity('Copy-Table').output.executionDetails[0].detailedDurations.transferDuration}' as CopyActivity_transferDuration_in_secs",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "AzureSqlTableMLB",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "watermarkAzureSqlLogTable",
+									"type": "DatasetReference"
+								}
+							]
 						}
 					]
 				}

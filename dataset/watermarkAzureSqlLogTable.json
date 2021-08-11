@@ -1,0 +1,16 @@
+{
+	"name": "watermarkAzureSqlLogTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseMLB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "pipeline_log"
+		}
+	}
+}
