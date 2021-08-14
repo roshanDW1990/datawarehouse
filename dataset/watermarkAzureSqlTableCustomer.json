@@ -1,0 +1,16 @@
+{
+	"name": "watermarkAzureSqlTableCustomer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseMLB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "customer_table"
+		}
+	}
+}

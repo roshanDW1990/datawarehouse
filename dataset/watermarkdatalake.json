@@ -1,0 +1,22 @@
+{
+	"name": "watermarkdatalake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "watermarkAzureDataLakeStorage01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "finalfiles",
+				"fileSystem": "watermark"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
